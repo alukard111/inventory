@@ -1,7 +1,7 @@
 <template>
-  <div class="folder-wrapper"   @click.stop="handleFocus">
+  <div :class="['folder-wrapper', isFolderActive ? 'folder-wrapper_active' : '']" @mousedown.stop="handleOnMouseDown($event)"
+       @click.stop="handleFocus" :style="{ 'grid-column': props.gridCol, 'grid-row': props.gridRow }">
       <div :class="['folder', folderClass]">
-
       </div>
       <div class="folder__count-wrapper">
         <span class="folder__count">
@@ -17,23 +17,39 @@
   const props = defineProps({
       folderType: {
           type: String,
-          default: 'greenFolder'
+          default: ''
       },
       quantity: {
           type: Number,
           default: 0
+      },
+      gridCol: {
+          type: Number,
+          default: 0
+      },
+      gridRow: {
+          type: Number,
+          default: 0
+      },
+      isFolderActive: {
+          type: Boolean,
+          default: false
       }
   })
 
 
   const emit = defineEmits<{
-      clickEvent
+      clickEvent,
+      onMouseDown: [event: MouseEvent],
   }>()
 
-  const handleFocus = (event: Event) => {
+  const handleFocus = () => {
       emit('clickEvent')
   }
 
+  const handleOnMouseDown = (event: MouseEvent) => {
+      emit('onMouseDown', event)
+  }
 
   const folderClasses = {
       greenFolder: 'folder__green',

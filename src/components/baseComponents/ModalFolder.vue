@@ -21,20 +21,13 @@
                     @click="handleOpenDeleteWindow"
                 />
             </div>
-
         </div>
-
-
     </div>
 </template>
 
 <script setup lang="ts">
     import BaseButton from "@/components/baseComponents/BaseButton.vue";
     import { computed, ref } from "vue";
-    import ModalDeletingFolders from "@/components/compositionComponents/ModalDeletingFolders.vue";
-
-
-
 
 
     const props = defineProps({
@@ -48,8 +41,7 @@
         },
     })
 
-    const activeClass = computed(() => props.isVisible ? 'modal-folder__wrapper-active' : '')
-    //
+
     const emit = defineEmits<{
         closeWindow: [event: Event],
         openDeleteWindow
@@ -58,10 +50,10 @@
     const handleCloseWindow = (event: Event) => {
         emit('closeWindow', event)
     }
+
     const handleOpenDeleteWindow = () => {
         emit('openDeleteWindow')
     }
-
 
     const folderClasses = {
         greenFolder: 'folder__green',
@@ -70,6 +62,4 @@
     }
 
     const folderClass = computed(() => folderClasses[props.folderType])
-
-
 </script>

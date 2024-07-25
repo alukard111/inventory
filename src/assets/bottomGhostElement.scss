@@ -1,0 +1,78 @@
+@import 'colors';
+
+@mixin gradient-animation($duration) {
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  & {
+    background: linear-gradient(to right, $gradientColors);
+    background-size: 200% 200%;
+    animation: gradient-animation #{$duration} ease-in-out infinite;
+  }
+}
+
+.bottom-ghost-element {
+  width: 100%;
+  height: 100%;
+  padding: 18px 0 18px 18px;
+
+  &__wrapper {
+    max-width: 785px;
+    max-height: 73px;
+    width: 100%;
+    height: 100%;
+    background: $componentBackgroundColor;
+    border-radius: 12px;
+    border: solid 1px $strokeColor;
+    position: relative;
+    display: flex;
+  }
+
+  &__stub {
+    width: 100%;
+    height: 100%;
+    max-width: 699px;
+    max-height: 36px;
+    border-radius: 12px;
+    @include gradient-animation(2s);
+  }
+
+  &__close {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin: 8px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      display: block;
+      width: 12px;
+      height: 1px;
+      background: $white;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}

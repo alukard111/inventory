@@ -13,7 +13,17 @@
     align-items: center;
     transition: 0.2s ease-in background;
     cursor: pointer;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     &:hover {
+        background: $hoverBackgroundFolder;
+    }
+
+    &_active {
         background: $hoverBackgroundFolder;
     }
 }
@@ -24,7 +34,7 @@
     max-width: 54px;
     max-height: 54px;
     position: relative;
-    //z-index: 10;
+    pointer-events: none;
 
     &:before {
         position: absolute;
@@ -34,6 +44,7 @@
         width: 48px;
         height: 48px;
     }
+
     &:after {
         position: absolute;
         right: 0;
@@ -43,8 +54,6 @@
         height: 48px;
         backdrop-filter: blur(8px);
     }
-
-
 
     &__count{
         font-size: 10px;
@@ -73,6 +82,7 @@
         background: $lightGreenFolder !important;
     }
 }
+
 .folder__brown {
     &:before {
         background: $brownFolder !important;
@@ -81,6 +91,7 @@
         background: $lightBrownFolder !important;
     }
 }
+
 .folder__purple {
     &:before {
         background: $purpleFolder !important;
@@ -114,7 +125,7 @@
             top: 10px;
             display: block;
             width: 12px;
-            height: 2px;
+            height: 1px;
             background: $white;
         }
 
@@ -139,10 +150,6 @@
         top: 0;
         backdrop-filter: blur(12px);
         z-index: 1;
-        //transition: transform .2s ease ;
-        //transform: translateX(250px);
-        transform: translateX(0px);
-
     }
 
 
@@ -211,15 +218,37 @@
 }
 
 .modal-enter-active, .modal-leave-active {
-    transition: transform 0.5s ease-in-out;
+    transition: right 0.5s ease;
 }
 
 .modal-enter-from, .modal-leave-to {
-    transform: translateX(260px);
+    right: -300px;
 }
 
 .modal-enter-to, .modal-leave-from {
-    transform: translateX(0);
+    right: 0;
+}
+
+.clone-folder {
+    position: absolute;
+    z-index: 1000;
+    border: solid 1px $strokeColor;
+    border-radius: 24px;
+    background: $componentBackgroundColor;
+
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+
+    &>.folder__count-wrapper {
+        display: none;
+    }
+    &:active {
+        cursor: grab;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }
+
 }
 
 .description-modal {
@@ -227,6 +256,7 @@
 
     &__stub {
         margin: 16px auto;
+
         &:nth-child(4) {
             max-width: 180px;
             width: 100%;
@@ -252,12 +282,14 @@
     font-size: 14px;
     letter-spacing: .4px;
     cursor: pointer;
+
     &:hover {
         background: $hoverButtonColor;
     }
     &:active {
         background: $activeButtonColor;
     }
+
     &__wrapper {
         margin: auto;
         width: 100%;
@@ -265,7 +297,6 @@
         max-width: 220px;
         max-height: 39px;
         min-height: 33px;
-
     }
 
     &__white {
@@ -286,6 +317,7 @@
     width: 100%;
     height: 100%;
     padding: 20px 20px 0 20px;
+
     &__wrapper {
         max-width: 250px;
         width: 100%;
@@ -299,7 +331,6 @@
         border-left: solid 1px $strokeColor;
         border-top: solid 1px $strokeColor;
         z-index: 2;
-
     }
 
     &__input {
@@ -307,6 +338,7 @@
         height: 100%;
         max-width: 210px;
         max-height: 40px;
+
         &>input {
             width: 100%;
             height: 100%;
@@ -317,6 +349,7 @@
             color: $whiteTextColor;
         }
     }
+
     &__buttons {
         display: grid;
         grid-template-columns: 4fr 5fr;
@@ -327,4 +360,3 @@
         margin: 20px 0;
     }
 }
-

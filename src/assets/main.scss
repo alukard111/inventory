@@ -2,6 +2,7 @@
 @import 'colors';
 @import 'inventory';
 @import 'baseComponents';
+@import 'bottomGhostElement';
 
 #app {
   max-width: 1280px;
@@ -14,36 +15,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html, body {
   height: 100%;
-  width: 100%;/* Укажите шрифт по вашему выбору */
+  width: 100%; /* Укажите шрифт по вашему выбору */
 }
 
 body {
   min-height: 100vh;
   color: var(--color-text);
   background: $baseBackgroundColor;
-  transition:
-          color 0.5s,
-          background-color 0.5s;
+  transition: color 0.5s,
+  background-color 0.5s;
   line-height: 1.6;
-  font-family:
-          Inter,
-          -apple-system,
-          BlinkMacSystemFont,
-          'Segoe UI',
-          Roboto,
-          Oxygen,
-          Ubuntu,
-          Cantarell,
-          'Fira Sans',
-          'Droid Sans',
-          'Helvetica Neue',
-          sans-serif;
+  font-family: Inter,
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  Oxygen,
+  Ubuntu,
+  Cantarell,
+  'Fira Sans',
+  'Droid Sans',
+  'Helvetica Neue',
+  sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -64,11 +65,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  flex-direction: column;
   &__content {
     width: 100%;
-    padding: 32px 0;
     display: grid;
     grid-template-columns: 1fr 2fr;
   }
+}
+
+.main__bottom-ghost-element {
+  width: 100%;
+  height: 100%;
+  max-height: 72px;
+  margin: 24px 0;
 }
