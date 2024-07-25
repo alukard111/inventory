@@ -1,0 +1,330 @@
+@import 'colors';
+@import 'leftGhostElements';
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+.folder-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 105px;
+    max-height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in background;
+    cursor: pointer;
+    &:hover {
+        background: $hoverBackgroundFolder;
+    }
+}
+
+.folder {
+    width: 100%;
+    height: 100%;
+    max-width: 54px;
+    max-height: 54px;
+    position: relative;
+    //z-index: 10;
+
+    &:before {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        content: "";
+        width: 48px;
+        height: 48px;
+    }
+    &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: "";
+        width: 48px;
+        height: 48px;
+        backdrop-filter: blur(8px);
+    }
+
+
+
+    &__count{
+        font-size: 10px;
+        color: $whiteTextColor;
+
+        &-wrapper {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 16px;
+            height: 16px;
+            border: solid 1px $strokeColor;
+            border-radius: 6px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.folder__green {
+    &:before {
+        background: $greenFolder !important;
+    }
+    &:after {
+        background: $lightGreenFolder !important;
+    }
+}
+.folder__brown {
+    &:before {
+        background: $brownFolder !important;
+    }
+    &:after {
+        background: $lightBrownFolder !important;
+    }
+}
+.folder__purple {
+    &:before {
+        background: $purpleFolder !important;
+    }
+    &:after {
+        background: $lightPurpleFolder !important;
+    }
+}
+
+.modal-folder {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__close {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        align-self: flex-end;
+        margin: 8px;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            display: block;
+            width: 12px;
+            height: 2px;
+            background: $white;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &__wrapper {
+        max-width: 250px;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+        background: $modalColor;
+        border-left: solid 1px $strokeColor;
+        position: absolute;
+        right: 0;
+        top: 0;
+        backdrop-filter: blur(12px);
+        z-index: 1;
+        //transition: transform .2s ease ;
+        //transform: translateX(250px);
+        transform: translateX(0px);
+
+    }
+
+
+    &__folder {
+        width: 130px;
+        height: 130px;
+        position: relative;
+        margin: 15px auto 30px;
+
+        &:before {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: "";
+            width: 115px;
+            height: 115px;
+            background: $purpleFolder;
+        }
+        &:after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            content: "";
+            width: 115px;
+            height: 115px;
+            background: $lightPurpleFolder;
+            backdrop-filter: blur(8px);
+        }
+    }
+
+
+    &__stub {
+        border-radius: 4px;
+        height: 10px;
+        max-width: 211px;
+        width: 100%;
+        @include gradient-animation(2s);
+
+        &-title {
+            width: 100%;
+            height: 100%;
+            max-height: 30px;
+            border-radius: 8px;
+            margin: auto;
+        }
+    }
+
+    &__stubs {
+        max-width: 220px;
+        max-height: 210px;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        padding-top: 16px;
+        border-top: 1px solid $strokeColor;
+        border-bottom: 1px solid $strokeColor;
+    }
+
+    &__button {
+        width: 100%;
+        height: 100%;
+        max-height: 39px;
+        margin: 18px auto;
+
+    }
+}
+
+.modal-enter-active, .modal-leave-active {
+    transition: transform 0.5s ease-in-out;
+}
+
+.modal-enter-from, .modal-leave-to {
+    transform: translateX(260px);
+}
+
+.modal-enter-to, .modal-leave-from {
+    transform: translateX(0);
+}
+
+.description-modal {
+    margin: 24px auto;
+
+    &__stub {
+        margin: 16px auto;
+        &:nth-child(4) {
+            max-width: 180px;
+            width: 100%;
+        }
+
+        &:last-child {
+            max-width: 80px;
+            width: 80px;
+        }
+
+    }
+}
+
+.base-button {
+    width: 100%;
+    height: 100%;
+    background: $buttonColor;
+    transition: 0.2s ease background;
+    border: none;
+    border-radius: 8px;
+    color: $whiteTextColor;
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: 14px;
+    letter-spacing: .4px;
+    cursor: pointer;
+    &:hover {
+        background: $hoverButtonColor;
+    }
+    &:active {
+        background: $activeButtonColor;
+    }
+    &__wrapper {
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        max-width: 220px;
+        max-height: 39px;
+        min-height: 33px;
+
+    }
+
+    &__white {
+        background: $whiteButtonColor;
+        color: $blackTextColor;
+
+        &:hover {
+            background: $whiteHoverButtonColor;
+        }
+        &:active {
+            background: $whiteActiveButtonColor;
+        }
+    }
+}
+
+
+.modal-deleting-folders {
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px 0 20px;
+    &__wrapper {
+        max-width: 250px;
+        width: 100%;
+        max-height: 133px;
+        height: 100%;
+        background: $modalColor;
+        backdrop-filter: blur(10px);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-left: solid 1px $strokeColor;
+        border-top: solid 1px $strokeColor;
+        z-index: 2;
+
+    }
+
+    &__input {
+        width: 100%;
+        height: 100%;
+        max-width: 210px;
+        max-height: 40px;
+        &>input {
+            width: 100%;
+            height: 100%;
+            border: 1px solid $strokeColor;
+            border-radius: 4px;
+            background: $componentBackgroundColor;
+            padding: 12px;
+            color: $whiteTextColor;
+        }
+    }
+    &__buttons {
+        display: grid;
+        grid-template-columns: 4fr 5fr;
+        gap: 10px;
+        height: 100%;
+        width: 100%;
+        max-height: 33px;
+        margin: 20px 0;
+    }
+}
+
